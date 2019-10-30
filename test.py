@@ -1,25 +1,18 @@
+#importing libraries
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-def train(x, y):
-    from sklearn.linear_model import LinearRegression
-    model = LinearRegression().fit(x,y)
-    return model
+#reading data
 data=pd.read_csv('Salary_Data.csv')
 x=data.iloc[:,:-1].values
 y=data.iloc[:,1].values
+
+#splitting data to train data and test data
 from sklearn.model_selection import train_test_split
 X_train,X_test,y_train,y_test=train_test_split(x,y,test_size=0.1,random_state=0)
-model = train(X_train,y_train)
-x_new = 4.2
-y_new = model.predict(X_test)
-print(y_new,y_test)
-y_train_predict=model.predict(X_train)
-plt.scatter(x=X_train,y=y_train)
-plt.plot(X_train,y_train_predict)
-plt.show()
-"""
+
+#gradient descend
 w=0.0
 b=0.0
 alpha=0.001
@@ -56,6 +49,8 @@ print(w,b)
 x_new = 2.7
 y_new=predict(x_new,w,b)
 print(y_new)
+
+#visualizing the result
 plt.scatter(x=X,y=y)
 x0 = np.linspace(0,10,100)
 y0 = w*x0+b
@@ -66,4 +61,3 @@ plt.ylabel('y', color='#1C2833')
 plt.legend(loc='upper left')
 plt.grid()
 plt.show()
-"""
