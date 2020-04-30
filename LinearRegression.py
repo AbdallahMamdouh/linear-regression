@@ -10,6 +10,11 @@ Created on Wed Apr 29 18:21:08 2020
 
 
 class LinearRegression:
+    def featureNormalize(self,X):
+        mu=np.average(X)
+        sigma=np.std(X)
+        X=(X-mu)/sigma
+        return X
     def __init__(self):
         self.m=0
         self.n=0
@@ -29,7 +34,8 @@ class LinearRegression:
         grad = (1 / m) * (diff.T .dot(X)).reshape((n, 1))+(Lambda/m)*tempTheta
         return J, grad
 
-    def train(self, X, y, alpha=0.01, epochs=10000, Lambda=0):
+    def train(self, X, y, alpha=0.0001, epochs=100000, Lambda=0):
+        X=self.featureNormalize(X)
         self.m, self.n = np.shape(X)
         X = np.append(np.ones((self.m, 1)), X, axis=1)
         self.n+=1
