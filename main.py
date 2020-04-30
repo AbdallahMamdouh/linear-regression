@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.1,random_state=0)
 
 model= LinearRegression()
-Jvec,theta=model.train(X_train,y_train)
+J,theta=model.train(X_train,y_train)
 plt.scatter(x=X,y=y)
 x0 = np.linspace(0.75,10.5,100).reshape((100,1))
 y0 = model.predict(x0)
